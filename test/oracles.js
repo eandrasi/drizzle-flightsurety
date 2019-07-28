@@ -99,8 +99,8 @@ contract('Oracles', async (accounts) => {
             }
             catch(e) {
               // Enable this when debugging
-              console.log('\nError', idx, oracleIndexes[idx].toNumber(), flightNumber, flightTime);
-              console.log(e)
+              // console.log('\nError', idx, oracleIndexes[idx].toNumber(), flightNumber, flightTime);
+              // console.log(e)
             }
             
           }
@@ -122,8 +122,8 @@ contract('Oracles', async (accounts) => {
             }
             catch(e) {
               // Enable this when debugging
-              console.log('\nError', idx, oracleIndexes[idx].toNumber(), flightNumber, flightTime);
-              console.log(e)
+              // console.log('\nError', idx, oracleIndexes[idx].toNumber(), flightNumber, flightTime);
+              // console.log(e)
             }
             
           }
@@ -175,7 +175,11 @@ contract('Oracles', async (accounts) => {
       let finalBalance = await web3.eth.getBalance(passengerLate)
       // console.log(`finalBalance: ${finalBalance}`)
       // console.log(`Diference: ${finalBalance - initialBalance}`)
-      assert.isTrue(finalBalance > initialBalance, "Funds have not been transferred")
+      // console.log(finalBalance)
+      // console.log(initialBalance)
+      // console.log(BigNumber(finalBalance).toNumber())
+      // console.log(BigNumber(initialBalance).toNumber())
+      assert.isTrue(BigNumber(finalBalance).toNumber() > BigNumber(initialBalance).toNumber(), "Funds have not been transferred")
 
     })
 
