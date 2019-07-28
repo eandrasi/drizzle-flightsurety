@@ -1,5 +1,7 @@
 const FlightSuretyApp = artifacts.require("FlightSuretyApp");
 const FlightSuretyData = artifacts.require("FlightSuretyData");
+const fs = require('fs');
+
 
 module.exports = function(deployer, network, accounts) {
   let firstAirline = accounts[1]
@@ -18,6 +20,7 @@ module.exports = function(deployer, network, accounts) {
             appAddress: FlightSuretyApp.address
           }
         }
+        fs.writeFileSync(__dirname + '/../src/server/config.json',JSON.stringify(config, null, '\t'), 'utf-8');
         return flightSuretyData.authorizeCaller(flightSuretyApp.address)
       })
   })
