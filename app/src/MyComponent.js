@@ -8,19 +8,33 @@ import {
 import logo from "./logo.png";
 
 export default ({ accounts }) => (
+
   <div className="App">
     <div>
       <img src={logo} alt="drizzle-logo" />
-      <h1>Drizzle Examples</h1>
-      <p>Examples of how to get started with Drizzle in various situations.</p>
+      <h1>Flightsurety Flight Insurance DAPP</h1>
+      <p>Decentralized application for flight insurance</p>
+      <p>Project for the nano-degree program from Udacity</p>
     </div>
 
     <div className="section">
-      <h2>Active Account</h2>
-      <AccountData accountIndex={0} units="ether" precision={3} />
+      <hr/>
+      <h4>Do not jump over steps. </h4>
+      <p>Error handling is not implemented so do not jump over steps. Go through phases as indicated</p>
+      <h4>Run this DAPP in a Chrome Incognito</h4>
+      <p>This Dapp should be run in a Chrome incognito window so that Metamask does not interfere.</p>
+      <hr/>
     </div>
 
     <div className="section">
+      <p>This Dapp needs access to multiple accounts</p>
+      <h2>First 2 Active Accounts</h2>
+      Account 0:<AccountData accountIndex={0} units="ether" precision={3} /><hr />
+      Account 1:<AccountData accountIndex={1} units="ether" precision={3} /><hr />
+      <hr />
+    </div>
+
+    {/* <div className="section">
       <h2>SimpleStorage</h2>
       <p>
         This shows a simple ContractData component with no arguments, along with
@@ -31,9 +45,9 @@ export default ({ accounts }) => (
         <ContractData contract="SimpleStorage" method="storedData" />
       </p>
       <ContractForm contract="SimpleStorage" method="set" />
-    </div>
+    </div> */}
 
-    <div className="section">
+    {/* <div className="section">
       <h2>TutorialToken</h2>
       <p>
         Here we have a form with custom, friendly labels. Also note the token
@@ -64,8 +78,8 @@ export default ({ accounts }) => (
         method="transfer"
         labels={["To Address", "Amount to Send"]}
       />
-    </div>
-    <div className="section">
+    </div> */}
+    {/* <div className="section">
       <h2>ComplexStorage</h2>
       <p>
         Finally this contract shows data types with additional considerations.
@@ -82,6 +96,6 @@ export default ({ accounts }) => (
       </p>
       <strong>Single Device Data: </strong>
       <ContractData contract="ComplexStorage" method="singleDD" />
-    </div>
+    </div> */}
   </div>
 );

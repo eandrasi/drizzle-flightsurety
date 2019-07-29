@@ -1,21 +1,37 @@
-import SimpleStorage from "./contracts/SimpleStorage.json";
-import ComplexStorage from "./contracts/ComplexStorage.json";
-import TutorialToken from "./contracts/TutorialToken.json";
+import FlightSuretyApp from "./contracts/FlightSuretyApp.json";
+import FlightSuretyData from "./contracts/FlightSuretyData.json";
 
 const options = {
   web3: {
     block: false,
     fallback: {
       type: "ws",
-      url: "ws://127.0.0.1:8545",
+      url: "ws://127.0.0.1:9545",
     },
   },
-  contracts: [SimpleStorage, ComplexStorage, TutorialToken],
+  contracts: [FlightSuretyApp, FlightSuretyData],
   events: {
-    SimpleStorage: ["StorageSet"],
+    FlightSuretyApp: [
+      "FlightRegistered",
+      "InsuranceBought",
+      "OperationalAppStateChanged",
+      "AirlinePaidFunding",
+      "FlightProcessed",
+      "FlightKey",
+      "FlightStatusInfo",
+      "OracleReport",
+      "OracleRequest",
+      "WithdrawRequested"
+    ],
+    FlightSuretyData: [
+      "NewAirlineRegistered",
+      "OperationalDataStateChanged",
+      "InsuranceCredited",
+      "InsuranceHasBeenPaid"
+    ]
   },
   polls: {
-    accounts: 1500,
+    accounts: 15000,
   },
 };
 
