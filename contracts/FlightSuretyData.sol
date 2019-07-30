@@ -192,15 +192,15 @@ contract FlightSuretyData {
         // emit RegisteredFlight(airline, flightNumber, flightTime, flightKey);
     }
 
-    function flightKeysSize() public returns (uint size) {
+    function flightKeysSize() public view returns (uint size) {
         size = flightKeys.length;
     }
 
-    function getFlightTime(bytes32 flightKey) public returns(uint flightTime) {
+    function getFlightTime(bytes32 flightKey) public view returns(uint flightTime) {
         flightTime = flights[flightKey].flightTime;
     }
 
-    function getFlight(bytes32 _flightKey) public returns
+    function getFlight(bytes32 _flightKey) public view returns
         (bytes32 flightKey, address airline, string memory flightNumber, uint flightTime)
         {
             flightKey = flights[_flightKey].flightKey;

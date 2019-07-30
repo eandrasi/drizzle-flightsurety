@@ -229,10 +229,11 @@ contract FlightSuretyApp {
                     emit AirlinePaidFunding(msg.sender);
                 }
 
-    function registerFlight(address airline, string calldata flightNumber, uint flightTime) external requireIsOperational operationalAirline
+    function registerFlight(address airline, string memory flightNumber, uint flightTime)
+        public requireIsOperational operationalAirline
     {
-        flightSuretyData.registerFlight(airline, flightNumber, flightTime);
         emit FlightRegistered(airline, flightNumber, flightTime);
+        flightSuretyData.registerFlight(airline, flightNumber, flightTime);
     }
 
     function buyInsurance(bytes32 flightKey)

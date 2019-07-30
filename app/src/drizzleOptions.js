@@ -31,7 +31,7 @@ const options = {
     ]
   },
   polls: {
-    accounts: 15000,
+    accounts: 1500,
   },
 };
 

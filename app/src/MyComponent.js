@@ -102,8 +102,6 @@ export default ({ accounts }) => (
       <strong>
       Airline 2:<AccountData accountIndex={2} units="ether" precision={3} /><hr />
       </strong>
-
-
       <p>
         First Airline can register a second airline.
         Press Sumbit to register another airline with accounts[2] address.
@@ -133,177 +131,104 @@ export default ({ accounts }) => (
       </p>
         <ContractForm contract="FlightSuretyApp" method="payFunding" sendArgs={{from: accounts[2], value: 10100000000000000000}} />
       <hr />
+      <h4>
+        Adding up to 4 Airlines without voting demonstrated with tests.
+        Adding 5th an more Airline only with voting demonstrated with tests.
+      </h4>
+      <hr />
+    </div>
+    <hr />
+
+    <div className="section">
+      <h2>Flights</h2>
+
+      <p>
+        Register a flight with the First Airline.
+        Timestamp should be sometime in the future.
+        All Flights functionality demonstrated with tests.
+      </p>
+      <ContractForm contract="FlightSuretyApp" method="registerFlight"  
+      labels={["accounts[1].address", "Ex: FL1000", "unixTimestamp: 1564487000"]} sendArgs={{from: accounts[1], gas: 9000000}}/>
+
+      <p>
+        FlightKeySize:
+        <strong>
+        <ContractData contract="FlightSuretyData" method="flightKeysSize" />
+        </strong>
+      </p>
       
+      <p>
+        FirstFlightKey:
+        <strong>
+        <ContractData contract="FlightSuretyData" method="flightKeys" methodArgs={["0"]}/>
+        </strong>
+      </p>
       
-      <strong>
-      Airline 3:<AccountData accountIndex={3} units="ether" precision={3} /><hr />
-      </strong>
       <p>
-        First Airline can register a 3rd airline.
-        Press Sumbit to register another airline with accounts[3] address.
+        FirstFlightData:
       </p>
-      <ContractForm contract="FlightSuretyApp" method="registerAirline"  sendArgs={{from: accounts[1]}} />
-      <p>
-        Third Airline <strong>(account[3])</strong> is an Airline :
         <strong>
-        <ContractData contract="FlightSuretyData" method="isAirline" methodArgs={[accounts[3]]} />
+        <ContractData contract="FlightSuretyData" method="flights" methodArgs={["0x81108d6978f6f06bbea9f913e31ff906e195866afc17c7c5ac57569da8416e58"]}/>
         </strong>
-      </p>
-      <p>
-        Third Airline <strong>(account[3])</strong> is registered:
-        <strong>
-        <ContractData contract="FlightSuretyData" method="isRegistered" methodArgs={[accounts[3]]} />
-        </strong>
-      </p>
-      <hr />
-      <p>
-        Third Airline <strong>(account[3])</strong> is Operational:
-        <strong>
-        <ContractData contract="FlightSuretyData" method="isAirlineOperational" methodArgs={[accounts[3]]} />
-        </strong>
-      </p>
-      <p>
-        Third Airline must pay fund in order to become operational.
-      </p>
-        <ContractForm contract="FlightSuretyApp" method="payFunding" sendArgs={{from: accounts[3], value: 10100000000000000000}} />
-      <hr />
+    </div>
 
+    <hr />
+
+    <div className="section">
+      <h2>Passengers</h2>
+      <p>
+        Buy insurance for a flight. All functionality demonstrated with tests.
+        Passenger will be accounts[11] and he will buy insurance for 1000000 wei.
+      </p>
 
       <strong>
-      Airline 4:<AccountData accountIndex={4} units="ether" precision={3} /><hr />
+      Passenger:<AccountData accountIndex={11} units="ether" precision={3} /><hr />
       </strong>
+
+      <ContractForm contract="FlightSuretyApp" method="buyInsurance" sendArgs={{from: accounts[11], value: 1000000, gas: 9000000}}/>
+    </div>
+
+    <hr />
+    <hr />
+    <hr />
+
+    <div className="section">
+      <h2>
+        Oracles
+      </h2>
+
       <p>
-        First Airline can register a 4th airline.
-        Press Sumbit to register another airline with accounts[4] address.
+        All functionality demonstrated with tests.
+        After registering enough Oracles from many different accounts, you have to listen to the OracleRequest event and respond if 
+        you have the specified index. The response will be generated manually.
       </p>
-      <ContractForm contract="FlightSuretyApp" method="registerAirline"  sendArgs={{from: accounts[1]}} />
+
       <p>
-        Forth Airline <strong>(account[4])</strong> is an Airline :
+        The fee is:
         <strong>
-        <ContractData contract="FlightSuretyData" method="isAirline" methodArgs={[accounts[4]]} />
+          <ContractData contract="FlightSuretyApp" method="REGISTRATION_FEE" />
         </strong>
       </p>
+
       <p>
-        Forth Airline <strong>(account[4])</strong> is registered:
+        Register one Oracle from accounts[20]
+      </p>
+      <ContractForm contract="FlightSuretyApp" method="registerOracle" sendArgs={{from: accounts[20], value: 1000000000000000000, gas: 9000000}} />
+
+      <p>
+        Indexes for accounts[20]:
+      </p>
         <strong>
-        <ContractData contract="FlightSuretyData" method="isRegistered" methodArgs={[accounts[4]]} />
+          <ContractData contract="FlightSuretyApp" method="getMyIndexes" methodArgs={[{from: accounts[20], gas: 9000000}]}/>
         </strong>
-      </p>
-      <hr />
+      
       <p>
-        Forth Airline <strong>(account[4])</strong> is Operational:
-        <strong>
-        <ContractData contract="FlightSuretyData" method="isAirlineOperational" methodArgs={[accounts[4]]} />
-        </strong>
+        Sumbit Oracle response from accounts[20]
       </p>
-      <p>
-        Forth Airline must pay fund in order to become operational.
-      </p>
-        <ContractForm contract="FlightSuretyApp" method="payFunding" sendArgs={{from: accounts[4], value: 10100000000000000000}} />
-      <hr />
-      <hr />
-
-
-      <strong>
-      Airline 5:<AccountData accountIndex={5} units="ether" precision={3} /><hr />
-      </strong>
-      <h3>
-        Fifth Airline must await voting!!!
-      </h3>
-      <ContractForm contract="FlightSuretyApp" method="registerAirline"  sendArgs={{from: accounts[1]}} />
-      <p>
-        Fifth Airline <strong>(account[5])</strong> is an Airline :
-        <strong>
-        <ContractData contract="FlightSuretyData" method="isAirline" methodArgs={[accounts[5]]} />
-        </strong>
-      </p>
-      <p>
-        Fifth Airline <strong>(account[5])</strong> is registered:
-        <strong>
-        <ContractData contract="FlightSuretyData" method="isRegistered" methodArgs={[accounts[5]]} />
-        </strong>
-      </p>
-      <hr />
-      <p>
-      Fifth Airline <strong>(account[5])</strong> is Operational:
-        <strong>
-        <ContractData contract="FlightSuretyData" method="isAirlineOperational" methodArgs={[accounts[5]]} />
-        </strong>
-      </p>
-      <p>
-      Fifth Airline must pay fund in order to become operational.
-      </p>
-        <ContractForm contract="FlightSuretyApp" method="payFunding" sendArgs={{from: accounts[5], value: 10100000000000000000}} />
-      <hr />
-
-
-
-
+      <ContractForm contract="FlightSuretyApp" method="submitOracleResponse" sendArgs={{from: accounts[20], value: 1000000000000000000, gas: 9000000}} />
 
     </div>
 
-    {/* <div className="section">
-      <h2>SimpleStorage</h2>
-      <p>
-        This shows a simple ContractData component with no arguments, along with
-        a form to set its value.
-      </p>
-      <p>
-        <strong>Stored Value: </strong>
-        <ContractData contract="SimpleStorage" method="storedData" />
-      </p>
-      <ContractForm contract="SimpleStorage" method="set" />
-    </div> */}
 
-    {/* <div className="section">
-      <h2>TutorialToken</h2>
-      <p>
-        Here we have a form with custom, friendly labels. Also note the token
-        symbol will not display a loading indicator. We've suppressed it with
-        the <code>hideIndicator</code> prop because we know this variable is
-        constant.
-      </p>
-      <p>
-        <strong>Total Supply: </strong>
-        <ContractData
-          contract="TutorialToken"
-          method="totalSupply"
-          methodArgs={[{ from: accounts[0] }]}
-        />{" "}
-        <ContractData contract="TutorialToken" method="symbol" hideIndicator />
-      </p>
-      <p>
-        <strong>My Balance: </strong>
-        <ContractData
-          contract="TutorialToken"
-          method="balanceOf"
-          methodArgs={[accounts[0]]}
-        />
-      </p>
-      <h3>Send Tokens</h3>
-      <ContractForm
-        contract="TutorialToken"
-        method="transfer"
-        labels={["To Address", "Amount to Send"]}
-      />
-    </div> */}
-    {/* <div className="section">
-      <h2>ComplexStorage</h2>
-      <p>
-        Finally this contract shows data types with additional considerations.
-        Note in the code the strings below are converted from bytes to UTF-8
-        strings and the device data struct is iterated as a list.
-      </p>
-      <p>
-        <strong>String 1: </strong>
-        <ContractData contract="ComplexStorage" method="string1" toUtf8 />
-      </p>
-      <p>
-        <strong>String 2: </strong>
-        <ContractData contract="ComplexStorage" method="string2" toUtf8 />
-      </p>
-      <strong>Single Device Data: </strong>
-      <ContractData contract="ComplexStorage" method="singleDD" />
-    </div> */}
   </div>
 );
