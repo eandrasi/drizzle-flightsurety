@@ -151,7 +151,7 @@ contract FlightSuretyData {
                             pure
     {}
 
-    function isAirline (address airlineAddress) external requireIsOperational returns(bool _valid) {
+    function isAirline (address airlineAddress) external view requireIsOperational returns(bool _valid) {
         _valid = airlines[airlineAddress].isRegistered;
     }
 

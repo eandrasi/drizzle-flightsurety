@@ -131,11 +131,11 @@ describe("Airline registration", () => {
           it("firstAirline can register another airline after the fund has been paid", async () => {
               let newAirline = accounts[2];
               await config.flightSuretyApp.registerAirline(newAirline, {from: config.firstAirline});
-            //   assert.isTrue(await config.flightSuretyData.isAirline.call(accounts[2]), 
-            //               "the accounts[2] has not been registered as an airline");
+              assert.isTrue(await config.flightSuretyData.isAirline.call(accounts[2]), 
+                          "the accounts[2] has not been registered as an airline");
       
-            //   let result = await config.flightSuretyData.countAirlines.call()
-            //   assert.equal(result.toNumber(), 2, "count of airlines does not match")
+              let result = await config.flightSuretyData.countAirlines.call()
+              assert.equal(result.toNumber(), 2, "count of airlines does not match")
           })
       
           it("can register up to 4 airlines without voting", async () => {
